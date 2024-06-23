@@ -1,0 +1,129 @@
+CREATE TABLE uf (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+   	nome VARCHAR(40) NOT NULL,
+    sigla VARCHAR(2) NOT NULL,
+    PRIMARY KEY (id)
+)
+
+CREATE TABLE bioma (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+   	nome VARCHAR(40) NOT NULL,
+    descricao VARCHAR(45) NOT NULL,
+    PRIMARY KEY (id)
+)
+
+CREATE TABLE especie (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+   	nome VARCHAR(40) NOT NULL,
+    descricao VARCHAR(45) NOT NULL,
+    espectativa_vida INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY (id)
+)
+
+CREATE TABLE bioma_especie (
+    id_especie INTEGER UNSIGNED NOT NULL,
+    id_bioma INTEGER UNSIGNED NOT NULL,
+    CONSTRAINT id_especie FOREIGN KEY id_especie (id_especie)
+        REFERENCES especie (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT,
+        CONSTRAINT id_bioma FOREIGN KEY id_bioma (id_bioma)
+        REFERENCES bioma (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT
+)
+
+CREATE TABLE locais (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    cidade VARCHAR(40) NOT NULL,
+    bairro VARCHAR(40) NOT NULL,
+    rua VARCHAR(40) NOT NULL,
+    numero INTEGER UNSIGNED NOT NULL,
+    complemento VARCHAR(40) NOT NULL,
+    id_UF INTEGER UNSIGNED NOT NULL,
+    id_bioma INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT locais_UF FOREIGN KEY id_UF (id_UF)
+        REFERENCES uf (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT,
+        CONSTRAINT locais_bioma FOREIGN KEY id_bioma (id_bioma)
+        REFERENCES bioma (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT
+)
+
+CREATE TABLE funcinario (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(40) NOT NULL,
+    cpf VARCHAR(11) NOT NULL UNIQUE,
+    cidade VARCHAR(40) NOT NULL,
+    bairro VARCHAR(40) NOT NULL,
+    rua VARCHAR(40) NOT NULL,
+    numero INTEGER UNSIGNED NOT NULL,
+    complemento VARCHAR(40) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    id_UF INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT funcinario_UF FOREIGN KEY id_UF (id_UF)
+        REFERENCES uf (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT
+)
+
+CREATE TABLE cliente (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(40) NOT NULL,
+    cpf VARCHAR(11) NOT NULL UNIQUE,
+    cidade VARCHAR(40) NOT NULL,
+    bairro VARCHAR(40) NOT NULL,
+    rua VARCHAR(40) NOT NULL,
+    numero INTEGER UNSIGNED NOT NULL,
+    complemento VARCHAR(40) NOT NULL,
+    id_UF INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT cliente_UF FOREIGN KEY id_UF (id_UF)
+        REFERENCES uf (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT
+)
+
+CREATE TABLE arvore (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+   	cord_latitude  FLOAT NOT NULL,
+    cord_longitude  FLOAT NOT NULL,
+    id_especie INTEGER UNSIGNED NOT NULL,
+    id_locais INTEGER UNSIGNED NOT NULL,
+    id_cliente INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT arvore_especie FOREIGN KEY id_especie (id_especie)
+        REFERENCES especie (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT,
+    CONSTRAINT arvore_locais FOREIGN KEY id_locais (id_locais)
+        REFERENCES locais (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT,
+    CONSTRAINT arvore_cliente FOREIGN KEY id_cliente (id_cliente)
+        REFERENCES cliente (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT
+)
+
+CREATE TABLE protocolo (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+   	data_criacao  DATE	 NOT NULL,
+    data_plantar  DATE	 NOT NULL,
+    deferido BIT NULL,
+    id_arvore INTEGER UNSIGNED NOT NULL,
+    id_funcionario INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT protocolo_arvore FOREIGN KEY id_arvore (id_arvore)
+        REFERENCES arvore (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT,
+    CONSTRAINT protocolo_funcionario FOREIGN KEY id_funcionario (id_funcionario)
+        REFERENCES funcinario (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT
+)
