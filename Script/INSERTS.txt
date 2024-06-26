@@ -1,0 +1,123 @@
+INSERT INTO especie (id, nome, descricao, expectativa_vida) VALUES
+	(1, 'Carvalho-alvarinho', 'Comumente conhecida como carvalho-alvarinho, é uma árvore grande e caducifólia encontrada na Europa.', 400),
+	(2, 'Ipê-amarelo', 'Árvore símbolo do Brasil, é conhecida por suas flores amarelas vibrantes e é nativa do Cerrado.', 70),
+	(3, 'Pinheiro-do-paraná', 'Também conhecido como araucária, é uma árvore de folha perene nativa do sul do Brasil.', 200),
+	(4, 'Pau-brasil', 'Árvore que dá nome ao Brasil, é conhecida por sua madeira vermelha e é nativa da Mata Atlântica.', 300),
+	(5, 'Ipê-roxo', 'Árvore nativa do Cerrado, conhecida por suas flores roxas.', 80),
+	(6, 'Aroeira-vermelha', 'Árvore nativa do Brasil, encontrada principalmente na Mata Atlântica e no Cerrado.', 100),
+	(7, 'Jequitibá-rosa', 'Uma das maiores árvores da Mata Atlântica, conhecida por sua grande altura.', 500),
+	(8, 'Copaíba', 'Árvore nativa da Amazônia, conhecida por seu óleo medicinal.', 400),
+	(9, 'Castanheira-do-Brasil', 'Árvore nativa da Amazônia, famosa por suas castanhas.', 500),
+	(10, 'Cajueiro', 'Árvore nativa do Nordeste do Brasil, conhecida por seus frutos (caju).', 50);
+
+INSERT INTO bioma (id, nome, descricao) VALUES
+	(1, 'Mata Atlântica', 'Bioma de floresta tropical que se estende ao longo da costa atlântica do Brasil.'),
+	(2, 'Cerrado', 'Bioma de savana tropical encontrado principalmente no Brasil central, caracterizado por suas árvores de pequeno porte e vegetação rasteira.'),
+	(3, 'Mata de Araucárias', 'Bioma de floresta temperada, predominante no sul do Brasil, onde se encontram principalmente araucárias.'),
+	(4, 'Amazônia', 'Bioma de floresta tropical, é a maior floresta do mundo, localizada na região norte do Brasil.'),
+	(5, 'Caatinga', 'Bioma semiárido localizado no Nordeste do Brasil, caracterizado por sua vegetação xerófila adaptada a longos períodos de seca.');
+	
+INSERT INTO bioma_especie (id_especie , id_bioma) VALUES
+(1,1),
+(2,2),
+(3,3),
+(4,1),
+(5,2),
+(10,5),
+(8,4),
+(9,4),
+(6,2),
+(7,1);
+
+INSERT INTO uf (id, nome, sigla) VALUES
+(1, 'Acre', 'AC'),
+(2, 'Alagoas', 'AL'),
+(3, 'Amapá', 'AP'),
+(4, 'Amazonas', 'AM'),
+(5, 'Bahia', 'BA'),
+(6, 'Ceará', 'CE'),
+(7, 'Distrito Federal', 'DF'),
+(8, 'Espírito Santo', 'ES'),
+(9, 'Goiás', 'GO'),
+(10, 'Maranhão', 'MA'),
+(11, 'Mato Grosso', 'MT'),
+(12, 'Mato Grosso do Sul', 'MS'),
+(13, 'Minas Gerais', 'MG'),
+(14, 'Pará', 'PA'),
+(15, 'Paraíba', 'PB'),
+(16, 'Paraná', 'PR'),
+(17, 'Pernambuco', 'PE'),
+(18, 'Piauí', 'PI'),
+(19, 'Rio de Janeiro', 'RJ'),
+(20, 'Rio Grande do Norte', 'RN'),
+(21, 'Rio Grande do Sul', 'RS'),
+(22, 'Rondônia', 'RO'),
+(23, 'Roraima', 'RR'),
+(24, 'Santa Catarina', 'SC'),
+(25, 'São Paulo', 'SP'),
+(26, 'Sergipe', 'SE'),
+(27, 'Tocantins', 'TO');
+
+INSERT INTO cliente (id, nome, bairro, cidade, complemento, numero, rua, cpf, id_UF) VALUES
+	(1, 'João Silva', 'Centro', 'São Paulo', 'Apto 101', 123, 'Rua das Flores', '12345678901', 25),
+	(2, 'Maria Oliveira', 'Jardim das Acácias', 'Rio de Janeiro', 'Casa 2', 456, 'Avenida Brasil', '98765432100', 19),
+	(3, 'Pedro Santos', 'Bela Vista', 'Belo Horizonte', 'Bloco B', 789, 'Rua Minas Gerais', '12312312312', 13),
+	(4, 'Ana Costa', 'Copacabana', 'Rio de Janeiro', 'Cobertura', 101, 'Rua Atlântica', '32132132132', 19),
+	(5, 'Carlos Pereira', 'Itaim Bibi', 'São Paulo', 'Sala 305', 456, 'Avenida Brigadeiro Faria Lima', '11122233344', 25),
+	(6, 'Mariana Souza', 'Jardins', 'São Paulo', 'Apto 202', 789, 'Rua Haddock Lobo', '44455566677', 25),
+	(7, 'Lucas Alves', 'Meireles', 'Fortaleza', 'Casa', 321, 'Rua Silva Paulet', '22233344455', 6),
+	(8, 'Fernanda Lima', 'Centro', 'Curitiba', 'Apto 808', 654, 'Rua XV de Novembro', '66677788899', 16),
+	(9, 'Rafael Duarte', 'Centro', 'Florianópolis', 'Cobertura', 987, 'Avenida Beira Mar Norte', '55566677788', 24),
+	(10, 'Patrícia Ribeiro', 'Asa Sul', 'Brasília', 'Bloco G', 123, 'Rua W3 Sul', '99988877766', 7);
+	
+	
+INSERT INTO funcionario (id, nome, bairro, cidade, complemento, numero, rua, cpf, id_UF, data_nascimento) VALUES
+	(1, 'José Silva', 'Centro', 'São Paulo', 'Apto 101', 123, 'Rua das Flores', '12345678901', 25, '1990-05-15'),
+	(2, 'Ana Oliveira', 'Jardim das Acácias', 'Rio de Janeiro', 'Casa 2', 456, 'Avenida Brasil', '98765432100', 19, '1985-12-10'),
+	(3, 'Carlos Santos', 'Bela Vista', 'Belo Horizonte', 'Bloco B', 789, 'Rua Minas Gerais', '12312312312', 13, '1988-08-25'),
+	(4, 'Maria Costa', 'Copacabana', 'Rio de Janeiro', 'Cobertura', 101, 'Rua Atlântica', '32132132132', 19, '1992-04-30'),
+	(5, 'Paula Pereira', 'Itaim Bibi', 'São Paulo', 'Sala 305', 456, 'Avenida Brigadeiro Faria Lima', '11122233344', 25, '1987-07-20'),
+	(6, 'Fernando Souza', 'Jardins', 'São Paulo', 'Apto 202', 789, 'Rua Haddock Lobo', '44455566677', 25, '1995-01-05'),
+	(7, 'Luciana Alves', 'Meireles', 'Fortaleza', 'Casa', 321, 'Rua Silva Paulet', '22233344455', 6, '1989-09-18'),
+	(8, 'Gabriel Lima', 'Centro', 'Curitiba', 'Apto 808', 654, 'Rua XV de Novembro', '66677788899', 16, '1991-03-12'),
+	(9, 'Patrícia Duarte', 'Centro', 'Florianópolis', 'Cobertura', 987, 'Avenida Beira Mar Norte', '55566677788', 24, '1993-11-08'),
+	(10, 'Mariana Ribeiro', 'Asa Sul', 'Brasília', 'Bloco G', 123, 'Rua W3 Sul', '99988877766', 7, '1986-06-28');
+	
+	
+INSERT INTO locais (id, nome, bairro, cidade, complemento, numero, rua, id_UF, id_bioma) VALUES
+	(1, 'Parque das Águas', 'Centro', 'São Lourenço', 'Entrada principal', 123, 'Avenida das Fontes', 13, 3),
+	(2, 'Parque do Ibirapuera', 'Ibirapuera', 'São Paulo', 'Portão 3', 456, 'Avenida Pedro Álvares Cabral', 25, 1),
+	(3, 'Parque Nacional da Tijuca', 'Alto da Boa Vista', 'Rio de Janeiro', 'Trilha da Cascatinha', 789, 'Estrada da Cascatinha', 19, 1),
+	(4, 'Jardim Botânico', 'Jardim Botânico', 'Curitiba', 'Estufa principal', 101, 'Rua Engenheiro Ostoja Roguski', 16, 1),
+	(5, 'Parque Nacional do Iguaçu', 'Área Rural de Foz do Iguaçu', 'Foz do Iguaçu', 'Cataratas do Iguaçu', 456, 'Rodovia BR-469', 16, 1),
+	(6, 'Parque Nacional da Chapada dos Veadeiros', 'Vila de São Jorge', 'Alto Paraíso de Goiás', 'Trilha dos Saltos', 321, 'Estrada GO-239', 9, 2),
+	(7, 'Parque Estadual do Jalapão', 'Mateiros', 'Jalapão', 'Trilha das Dunas', 654, 'TO-110', 27, 5),
+	(8, 'Parque Nacional dos Lençóis Maranhenses', 'Barreirinhas', 'Lençóis Maranhenses', 'Lagoa Azul', 987, 'MA-315', 10, 4),
+	(9, 'Parque Estadual da Serra do Mar', 'Picinguaba', 'Ubatuba', 'Trilha do Pico Corcovado', 123, 'Estrada do Corcovado', 19, 1),
+	(10, 'Parque Nacional da Amazônia', 'Itaituba', 'Itaituba', 'Rio Tapajós', 456, 'PA-370', 14, 4);
+	
+
+INSERT INTO arvore (id, id_cliente, id_especie, id_locais, cord_latitude, cord_longitude) VALUES
+	(1, 1, 1, 1, -22.6161, -44.9708),     
+	(2, 2, 2, 2, -23.5878, -46.6583),     
+	(3, 3, 3, 3, -22.9614, -43.2719),    
+	(4, 4, 4, 4, -25.4244, -49.2630),    
+	(5, 5, 5, 5, -25.6848, -54.4401),    
+	(6, 6, 6, 6, -14.1703, -47.7837),    
+	(7, 7, 7, 7, -10.9111, -46.7444),    
+	(8, 8, 8, 8, -2.7264, -42.7982),     
+	(9, 9, 9, 9, -23.3714, -44.8448),     
+	(10, 10, 10, 10, -2.7959, -54.6186);  
+	
+
+INSERT INTO protocolo (id, data_criacao, data_plantar, deferido, id_arvore, id_funcionario) VALUES
+	(1, '2024-06-25', '2024-07-10', 1, 1, 1),
+	(2, '2024-06-25', '2024-07-12', 1, 2, 2),
+	(3, '2024-06-25', '2024-07-15', 0, 3, 3),
+	(4, '2024-06-25', '2024-07-20', 1, 4, 2),
+	(5, '2024-06-25', '2024-07-25', 0, 5, 2),
+	(6, '2024-06-25', '2024-08-01', 1, 6, 6),
+	(7, '2024-06-25', '2024-08-05', 1, 7, 7),
+	(8, '2024-06-25', '2024-08-10', 0, 8, 5),
+	(9, '2024-06-25', '2024-08-15', 1, 9, 9),
+	(10, '2024-06-25', '2024-08-20', 0, 10, 10);
