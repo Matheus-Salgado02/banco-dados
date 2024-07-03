@@ -127,3 +127,16 @@ CREATE TABLE protocolo (
            ON DELETE RESTRICT
            ON UPDATE RESTRICT
 )
+
+
+CREATE table car (
+    id INTEGER UNSIGNED not null  AUTO_INCREMENT,
+    reserva_legal INTEGER UNSIGNED NOT NULL,
+    apps INTEGER UNSIGNED NOT NULL,
+    uso_terra tinytext NOT NULL,
+    id_locais INTEGER UNSIGNED not null,
+    CONSTRAINT car_locais FOREIGN KEY id_locais (id_locais)
+        REFERENCES locais (id)
+           ON DELETE RESTRICT
+           ON UPDATE RESTRICT
+    )

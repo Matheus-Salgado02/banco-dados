@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26/06/2024 às 07:11
+-- Tempo de geração: 03/07/2024 às 03:29
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -105,6 +105,20 @@ INSERT INTO `bioma_especie` (`id_especie`, `id_bioma`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `car`
+--
+
+CREATE TABLE `car` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `reserva_legal` int(10) UNSIGNED NOT NULL,
+  `apps` int(10) UNSIGNED NOT NULL,
+  `uso_terra` tinytext NOT NULL,
+  `id_locais` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `cliente`
 --
 
@@ -117,24 +131,26 @@ CREATE TABLE `cliente` (
   `rua` varchar(40) NOT NULL,
   `numero` int(10) UNSIGNED NOT NULL,
   `complemento` varchar(40) NOT NULL,
-  `id_UF` int(10) UNSIGNED NOT NULL
+  `id_UF` int(10) UNSIGNED NOT NULL,
+  `telefone` varchar(13) NOT NULL,
+  `email` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `cliente`
 --
 
-INSERT INTO `cliente` (`id`, `nome`, `cpf`, `cidade`, `bairro`, `rua`, `numero`, `complemento`, `id_UF`) VALUES
-(1, 'João Silva', '12345678901', 'São Paulo', 'Centro', 'Rua das Flores', 123, 'Apto 101', 25),
-(2, 'Maria Oliveira', '98765432100', 'Rio de Janeiro', 'Jardim das Acácias', 'Avenida Brasil', 456, 'Casa 2', 19),
-(3, 'Pedro Santos', '12312312312', 'Belo Horizonte', 'Bela Vista', 'Rua Minas Gerais', 789, 'Bloco B', 13),
-(4, 'Ana Costa', '32132132132', 'Rio de Janeiro', 'Copacabana', 'Rua Atlântica', 101, 'Cobertura', 19),
-(5, 'Carlos Pereira', '11122233344', 'São Paulo', 'Itaim Bibi', 'Avenida Brigadeiro Faria Lima', 456, 'Sala 305', 25),
-(6, 'Mariana Souza', '44455566677', 'São Paulo', 'Jardins', 'Rua Haddock Lobo', 789, 'Apto 202', 25),
-(7, 'Lucas Alves', '22233344455', 'Fortaleza', 'Meireles', 'Rua Silva Paulet', 321, 'Casa', 6),
-(8, 'Fernanda Lima', '66677788899', 'Curitiba', 'Centro', 'Rua XV de Novembro', 654, 'Apto 808', 16),
-(9, 'Rafael Duarte', '55566677788', 'Florianópolis', 'Centro', 'Avenida Beira Mar Norte', 987, 'Cobertura', 24),
-(10, 'Patrícia Ribeiro', '99988877766', 'Brasília', 'Asa Sul', 'Rua W3 Sul', 123, 'Bloco G', 7);
+INSERT INTO `cliente` (`id`, `nome`, `cpf`, `cidade`, `bairro`, `rua`, `numero`, `complemento`, `id_UF`, `telefone`, `email`) VALUES
+(1, 'João Silva', '12345678901', 'São Paulo', 'Centro', 'Rua das Flores', 123, 'Apto 101', 25, '', ''),
+(2, 'Maria Oliveira', '98765432100', 'Rio de Janeiro', 'Jardim das Acácias', 'Avenida Brasil', 456, 'Casa 2', 19, '', ''),
+(3, 'Pedro Santos', '12312312312', 'Belo Horizonte', 'Bela Vista', 'Rua Minas Gerais', 789, 'Bloco B', 13, '', ''),
+(4, 'Ana Costa', '32132132132', 'Rio de Janeiro', 'Copacabana', 'Rua Atlântica', 101, 'Cobertura', 19, '', ''),
+(5, 'Carlos Pereira', '11122233344', 'São Paulo', 'Itaim Bibi', 'Avenida Brigadeiro Faria Lima', 456, 'Sala 305', 25, '', ''),
+(6, 'Mariana Souza', '44455566677', 'São Paulo', 'Jardins', 'Rua Haddock Lobo', 789, 'Apto 202', 25, '', ''),
+(7, 'Lucas Alves', '22233344455', 'Fortaleza', 'Meireles', 'Rua Silva Paulet', 321, 'Casa', 6, '', ''),
+(8, 'Fernanda Lima', '66677788899', 'Curitiba', 'Centro', 'Rua XV de Novembro', 654, 'Apto 808', 16, '', ''),
+(9, 'Rafael Duarte', '55566677788', 'Florianópolis', 'Centro', 'Avenida Beira Mar Norte', 987, 'Cobertura', 24, '', ''),
+(10, 'Patrícia Ribeiro', '99988877766', 'Brasília', 'Asa Sul', 'Rua W3 Sul', 123, 'Bloco G', 7, '', '');
 
 -- --------------------------------------------------------
 
@@ -146,24 +162,25 @@ CREATE TABLE `especie` (
   `id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(40) NOT NULL,
   `descricao` tinytext DEFAULT NULL,
-  `expectativa_vida` int(11) DEFAULT NULL
+  `expectativa_vida` int(11) DEFAULT NULL,
+  `nome_cientifico` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `especie`
 --
 
-INSERT INTO `especie` (`id`, `nome`, `descricao`, `expectativa_vida`) VALUES
-(1, 'Carvalho-alvarinho', 'Comumente conhecida como carvalho-alvarinho, é uma árvore grande e caducifólia encontrada na Europa.', 400),
-(2, 'Ipê-amarelo', 'Árvore símbolo do Brasil, é conhecida por suas flores amarelas vibrantes e é nativa do Cerrado.', 70),
-(3, 'Pinheiro-do-paraná', 'Também conhecido como araucária, é uma árvore de folha perene nativa do sul do Brasil.', 200),
-(4, 'Pau-brasil', 'Árvore que dá nome ao Brasil, é conhecida por sua madeira vermelha e é nativa da Mata Atlântica.', 300),
-(5, 'Ipê-roxo', 'Árvore nativa do Cerrado, conhecida por suas flores roxas.', 80),
-(6, 'Aroeira-vermelha', 'Árvore nativa do Brasil, encontrada principalmente na Mata Atlântica e no Cerrado.', 100),
-(7, 'Jequitibá-rosa', 'Uma das maiores árvores da Mata Atlântica, conhecida por sua grande altura.', 500),
-(8, 'Copaíba', 'Árvore nativa da Amazônia, conhecida por seu óleo medicinal.', 400),
-(9, 'Castanheira-do-Brasil', 'Árvore nativa da Amazônia, famosa por suas castanhas.', 500),
-(10, 'Cajueiro', 'Árvore nativa do Nordeste do Brasil, conhecida por seus frutos (caju).', 50);
+INSERT INTO `especie` (`id`, `nome`, `descricao`, `expectativa_vida`, `nome_cientifico`) VALUES
+(1, 'Carvalho-alvarinho', 'Comumente conhecida como carvalho-alvarinho, é uma árvore grande e caducifólia encontrada na Europa.', 400, ''),
+(2, 'Ipê-amarelo', 'Árvore símbolo do Brasil, é conhecida por suas flores amarelas vibrantes e é nativa do Cerrado.', 70, ''),
+(3, 'Pinheiro-do-paraná', 'Também conhecido como araucária, é uma árvore de folha perene nativa do sul do Brasil.', 200, ''),
+(4, 'Pau-brasil', 'Árvore que dá nome ao Brasil, é conhecida por sua madeira vermelha e é nativa da Mata Atlântica.', 300, ''),
+(5, 'Ipê-roxo', 'Árvore nativa do Cerrado, conhecida por suas flores roxas.', 80, ''),
+(6, 'Aroeira-vermelha', 'Árvore nativa do Brasil, encontrada principalmente na Mata Atlântica e no Cerrado.', 100, ''),
+(7, 'Jequitibá-rosa', 'Uma das maiores árvores da Mata Atlântica, conhecida por sua grande altura.', 500, ''),
+(8, 'Copaíba', 'Árvore nativa da Amazônia, conhecida por seu óleo medicinal.', 400, ''),
+(9, 'Castanheira-do-Brasil', 'Árvore nativa da Amazônia, famosa por suas castanhas.', 500, ''),
+(10, 'Cajueiro', 'Árvore nativa do Nordeste do Brasil, conhecida por seus frutos (caju).', 50, '');
 
 -- --------------------------------------------------------
 
@@ -215,24 +232,28 @@ CREATE TABLE `locais` (
   `complemento` varchar(40) NOT NULL,
   `id_UF` int(10) UNSIGNED NOT NULL,
   `id_bioma` int(10) UNSIGNED NOT NULL,
-  `nome` varchar(45) NOT NULL
+  `nome` varchar(45) NOT NULL,
+  `descricao` tinytext NOT NULL,
+  `croqui` tinytext NOT NULL,
+  `tipo_plantio` varchar(45) NOT NULL,
+  `area_total` float UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `locais`
 --
 
-INSERT INTO `locais` (`id`, `cidade`, `bairro`, `rua`, `numero`, `complemento`, `id_UF`, `id_bioma`, `nome`) VALUES
-(1, 'São Lourenço', 'Centro', 'Avenida das Fontes', 123, 'Entrada principal', 13, 3, 'Parque das Águas'),
-(2, 'São Paulo', 'Ibirapuera', 'Avenida Pedro Álvares Cabral', 456, 'Portão 3', 25, 1, 'Parque do Ibirapuera'),
-(3, 'Rio de Janeiro', 'Alto da Boa Vista', 'Estrada da Cascatinha', 789, 'Trilha da Cascatinha', 19, 1, 'Parque Nacional da Tijuca'),
-(4, 'Curitiba', 'Jardim Botânico', 'Rua Engenheiro Ostoja Roguski', 101, 'Estufa principal', 16, 1, 'Jardim Botânico'),
-(5, 'Foz do Iguaçu', 'Área Rural de Foz do Iguaçu', 'Rodovia BR-469', 456, 'Cataratas do Iguaçu', 16, 1, 'Parque Nacional do Iguaçu'),
-(6, 'Alto Paraíso de Goiás', 'Vila de São Jorge', 'Estrada GO-239', 321, 'Trilha dos Saltos', 9, 2, 'Parque Nacional da Chapada dos Veadeiros'),
-(7, 'Jalapão', 'Mateiros', 'TO-110', 654, 'Trilha das Dunas', 27, 5, 'Parque Estadual do Jalapão'),
-(8, 'Lençóis Maranhenses', 'Barreirinhas', 'MA-315', 987, 'Lagoa Azul', 10, 4, 'Parque Nacional dos Lençóis Maranhenses'),
-(9, 'Ubatuba', 'Picinguaba', 'Estrada do Corcovado', 123, 'Trilha do Pico Corcovado', 19, 1, 'Parque Estadual da Serra do Mar'),
-(10, 'Itaituba', 'Itaituba', 'PA-370', 456, 'Rio Tapajós', 14, 4, 'Parque Nacional da Amazônia');
+INSERT INTO `locais` (`id`, `cidade`, `bairro`, `rua`, `numero`, `complemento`, `id_UF`, `id_bioma`, `nome`, `descricao`, `croqui`, `tipo_plantio`, `area_total`) VALUES
+(1, 'São Lourenço', 'Centro', 'Avenida das Fontes', 123, 'Entrada principal', 13, 3, 'Parque das Águas', '', '', '', 0),
+(2, 'São Paulo', 'Ibirapuera', 'Avenida Pedro Álvares Cabral', 456, 'Portão 3', 25, 1, 'Parque do Ibirapuera', '', '', '', 0),
+(3, 'Rio de Janeiro', 'Alto da Boa Vista', 'Estrada da Cascatinha', 789, 'Trilha da Cascatinha', 19, 1, 'Parque Nacional da Tijuca', '', '', '', 0),
+(4, 'Curitiba', 'Jardim Botânico', 'Rua Engenheiro Ostoja Roguski', 101, 'Estufa principal', 16, 1, 'Jardim Botânico', '', '', '', 0),
+(5, 'Foz do Iguaçu', 'Área Rural de Foz do Iguaçu', 'Rodovia BR-469', 456, 'Cataratas do Iguaçu', 16, 1, 'Parque Nacional do Iguaçu', '', '', '', 0),
+(6, 'Alto Paraíso de Goiás', 'Vila de São Jorge', 'Estrada GO-239', 321, 'Trilha dos Saltos', 9, 2, 'Parque Nacional da Chapada dos Veadeiros', '', '', '', 0),
+(7, 'Jalapão', 'Mateiros', 'TO-110', 654, 'Trilha das Dunas', 27, 5, 'Parque Estadual do Jalapão', '', '', '', 0),
+(8, 'Lençóis Maranhenses', 'Barreirinhas', 'MA-315', 987, 'Lagoa Azul', 10, 4, 'Parque Nacional dos Lençóis Maranhenses', '', '', '', 0),
+(9, 'Ubatuba', 'Picinguaba', 'Estrada do Corcovado', 123, 'Trilha do Pico Corcovado', 19, 1, 'Parque Estadual da Serra do Mar', '', '', '', 0),
+(10, 'Itaituba', 'Itaituba', 'PA-370', 456, 'Rio Tapajós', 14, 4, 'Parque Nacional da Amazônia', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -337,6 +358,13 @@ ALTER TABLE `bioma_especie`
   ADD KEY `id_bioma` (`id_bioma`);
 
 --
+-- Índices de tabela `car`
+--
+ALTER TABLE `car`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `car_locais` (`id_locais`);
+
+--
 -- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
@@ -397,6 +425,12 @@ ALTER TABLE `bioma`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de tabela `car`
+--
+ALTER TABLE `car`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
@@ -450,6 +484,12 @@ ALTER TABLE `arvore`
 ALTER TABLE `bioma_especie`
   ADD CONSTRAINT `id_bioma` FOREIGN KEY (`id_bioma`) REFERENCES `bioma` (`id`),
   ADD CONSTRAINT `id_especie` FOREIGN KEY (`id_especie`) REFERENCES `especie` (`id`);
+
+--
+-- Restrições para tabelas `car`
+--
+ALTER TABLE `car`
+  ADD CONSTRAINT `car_locais` FOREIGN KEY (`id_locais`) REFERENCES `locais` (`id`);
 
 --
 -- Restrições para tabelas `cliente`
