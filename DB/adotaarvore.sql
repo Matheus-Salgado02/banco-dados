@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03/07/2024 às 03:29
+-- Tempo de geração: 04/07/2024 às 02:41
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -116,6 +116,22 @@ CREATE TABLE `car` (
   `id_locais` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `car`
+--
+
+INSERT INTO `car` (`id`, `reserva_legal`, `apps`, `uso_terra`, `id_locais`) VALUES
+(1, 20, 10, 'Pastagem', 1),
+(2, 26, 15, 'Cultivo', 2),
+(3, 18, 8, 'Silvicultura', 3),
+(4, 23, 12, 'Agricultura', 4),
+(5, 20, 9, 'Pastagem', 5),
+(6, 21, 11, 'Cultivo', 6),
+(7, 24, 14, 'Silvicultura', 7),
+(8, 24, 13, 'Agricultura', 8),
+(9, 18, 7, 'Pastagem', 9),
+(10, 26, 16, 'Cultivo', 10);
+
 -- --------------------------------------------------------
 
 --
@@ -171,16 +187,16 @@ CREATE TABLE `especie` (
 --
 
 INSERT INTO `especie` (`id`, `nome`, `descricao`, `expectativa_vida`, `nome_cientifico`) VALUES
-(1, 'Carvalho-alvarinho', 'Comumente conhecida como carvalho-alvarinho, é uma árvore grande e caducifólia encontrada na Europa.', 400, ''),
-(2, 'Ipê-amarelo', 'Árvore símbolo do Brasil, é conhecida por suas flores amarelas vibrantes e é nativa do Cerrado.', 70, ''),
-(3, 'Pinheiro-do-paraná', 'Também conhecido como araucária, é uma árvore de folha perene nativa do sul do Brasil.', 200, ''),
-(4, 'Pau-brasil', 'Árvore que dá nome ao Brasil, é conhecida por sua madeira vermelha e é nativa da Mata Atlântica.', 300, ''),
-(5, 'Ipê-roxo', 'Árvore nativa do Cerrado, conhecida por suas flores roxas.', 80, ''),
-(6, 'Aroeira-vermelha', 'Árvore nativa do Brasil, encontrada principalmente na Mata Atlântica e no Cerrado.', 100, ''),
-(7, 'Jequitibá-rosa', 'Uma das maiores árvores da Mata Atlântica, conhecida por sua grande altura.', 500, ''),
-(8, 'Copaíba', 'Árvore nativa da Amazônia, conhecida por seu óleo medicinal.', 400, ''),
-(9, 'Castanheira-do-Brasil', 'Árvore nativa da Amazônia, famosa por suas castanhas.', 500, ''),
-(10, 'Cajueiro', 'Árvore nativa do Nordeste do Brasil, conhecida por seus frutos (caju).', 50, '');
+(1, 'Carvalho-alvarinho', 'Comumente conhecida como carvalho-alvarinho, é uma árvore grande e caducifólia encontrada na Europa.', 400, 'Quercus robur'),
+(2, 'Ipê-amarelo', 'Árvore símbolo do Brasil, é conhecida por suas flores amarelas vibrantes e é nativa do Cerrado.', 70, 'Handroanthus albus'),
+(3, 'Pinheiro-do-paraná', 'Também conhecido como araucária, é uma árvore de folha perene nativa do sul do Brasil.', 200, 'Araucaria angustifolia'),
+(4, 'Pau-brasil', 'Árvore que dá nome ao Brasil, é conhecida por sua madeira vermelha e é nativa da Mata Atlântica.', 300, 'Paubrasilia echinata'),
+(5, 'Ipê-roxo', 'Árvore nativa do Cerrado, conhecida por suas flores roxas.', 80, 'Handroanthus impetiginosus'),
+(6, 'Aroeira-vermelha', 'Árvore nativa do Brasil, encontrada principalmente na Mata Atlântica e no Cerrado.', 100, 'Schinus terebinthifolius'),
+(7, 'Jequitibá-rosa', 'Uma das maiores árvores da Mata Atlântica, conhecida por sua grande altura.', 500, 'Cariniana legalis'),
+(8, 'Copaíba', 'Árvore nativa da Amazônia, conhecida por seu óleo medicinal.', 400, 'Copaifera langsdorffii'),
+(9, 'Castanheira-do-Brasil', 'Árvore nativa da Amazônia, famosa por suas castanhas.', 500, 'Bertholletia excelsa'),
+(10, 'Cajueiro', 'Árvore nativa do Nordeste do Brasil, conhecida por seus frutos (caju).', 50, 'Anacardium occidentale');
 
 -- --------------------------------------------------------
 
@@ -244,16 +260,16 @@ CREATE TABLE `locais` (
 --
 
 INSERT INTO `locais` (`id`, `cidade`, `bairro`, `rua`, `numero`, `complemento`, `id_UF`, `id_bioma`, `nome`, `descricao`, `croqui`, `tipo_plantio`, `area_total`) VALUES
-(1, 'São Lourenço', 'Centro', 'Avenida das Fontes', 123, 'Entrada principal', 13, 3, 'Parque das Águas', '', '', '', 0),
-(2, 'São Paulo', 'Ibirapuera', 'Avenida Pedro Álvares Cabral', 456, 'Portão 3', 25, 1, 'Parque do Ibirapuera', '', '', '', 0),
-(3, 'Rio de Janeiro', 'Alto da Boa Vista', 'Estrada da Cascatinha', 789, 'Trilha da Cascatinha', 19, 1, 'Parque Nacional da Tijuca', '', '', '', 0),
-(4, 'Curitiba', 'Jardim Botânico', 'Rua Engenheiro Ostoja Roguski', 101, 'Estufa principal', 16, 1, 'Jardim Botânico', '', '', '', 0),
-(5, 'Foz do Iguaçu', 'Área Rural de Foz do Iguaçu', 'Rodovia BR-469', 456, 'Cataratas do Iguaçu', 16, 1, 'Parque Nacional do Iguaçu', '', '', '', 0),
-(6, 'Alto Paraíso de Goiás', 'Vila de São Jorge', 'Estrada GO-239', 321, 'Trilha dos Saltos', 9, 2, 'Parque Nacional da Chapada dos Veadeiros', '', '', '', 0),
-(7, 'Jalapão', 'Mateiros', 'TO-110', 654, 'Trilha das Dunas', 27, 5, 'Parque Estadual do Jalapão', '', '', '', 0),
-(8, 'Lençóis Maranhenses', 'Barreirinhas', 'MA-315', 987, 'Lagoa Azul', 10, 4, 'Parque Nacional dos Lençóis Maranhenses', '', '', '', 0),
-(9, 'Ubatuba', 'Picinguaba', 'Estrada do Corcovado', 123, 'Trilha do Pico Corcovado', 19, 1, 'Parque Estadual da Serra do Mar', '', '', '', 0),
-(10, 'Itaituba', 'Itaituba', 'PA-370', 456, 'Rio Tapajós', 14, 4, 'Parque Nacional da Amazônia', '', '', '', 0);
+(1, 'São Lourenço', 'Centro', 'Avenida das Fontes', 123, 'Entrada principal', 13, 3, 'Parque das Águas', 'Plantio de espécies nativas em monocultura.', 'croqui1.png', 'Monocultura', 100.5),
+(2, 'São Paulo', 'Ibirapuera', 'Avenida Pedro Álvares Cabral', 456, 'Portão 3', 25, 1, 'Parque do Ibirapuera', 'Plantio em sistema agroflorestal com diversidade de culturas.', 'croqui2.png', 'Sistema Agroflorestal', 200.75),
+(3, 'Rio de Janeiro', 'Alto da Boa Vista', 'Estrada da Cascatinha', 789, 'Trilha da Cascatinha', 19, 1, 'Parque Nacional da Tijuca', 'Plantio de árvores frutíferas em monocultura.', 'croqui3.png', 'Monocultura', 150),
+(4, 'Curitiba', 'Jardim Botânico', 'Rua Engenheiro Ostoja Roguski', 101, 'Estufa principal', 16, 1, 'Jardim Botânico', 'Sistema agroflorestal com árvores e culturas agrícolas.', 'croqui4.png', 'Sistema Agroflorestal', 175.25),
+(5, 'Foz do Iguaçu', 'Área Rural de Foz do Iguaçu', 'Rodovia BR-469', 456, 'Cataratas do Iguaçu', 16, 1, 'Parque Nacional do Iguaçu', 'Monocultura de eucaliptos.', 'croqui5.png', 'Monocultura', 125.5),
+(6, 'Alto Paraíso de Goiás', 'Vila de São Jorge', 'Estrada GO-239', 321, 'Trilha dos Saltos', 9, 2, 'Parque Nacional da Chapada dos Veadeiros', 'Área de reflorestamento com espécies nativas.', 'croqui6.png', 'Sistema Agroflorestal', 220.3),
+(7, 'Jalapão', 'Mateiros', 'TO-110', 654, 'Trilha das Dunas', 27, 5, 'Parque Estadual do Jalapão', 'Sistema agroflorestal integrado com pastagem.', 'croqui7.png', 'Monocultura', 190.75),
+(8, 'Lençóis Maranhenses', 'Barreirinhas', 'MA-315', 987, 'Lagoa Azul', 10, 4, 'Parque Nacional dos Lençóis Maranhenses', 'Plantio experimental de novas espécies.', 'croqui8.png', 'Sistema Agroflorestal', 210.4),
+(9, 'Ubatuba', 'Picinguaba', 'Estrada do Corcovado', 123, 'Trilha do Pico Corcovado', 19, 1, 'Parque Estadual da Serra do Mar', 'Área de conservação ambiental.', 'croqui9.png', 'Monocultura', 130.6),
+(10, 'Itaituba', 'Itaituba', 'PA-370', 456, 'Rio Tapajós', 14, 4, 'Parque Nacional da Amazônia', 'Produção sustentável em sistema agroflorestal.', 'croqui10.png', 'Sistema Agroflorestal', 205.85);
 
 -- --------------------------------------------------------
 
@@ -428,7 +444,7 @@ ALTER TABLE `bioma`
 -- AUTO_INCREMENT de tabela `car`
 --
 ALTER TABLE `car`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`

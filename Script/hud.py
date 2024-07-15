@@ -1,5 +1,7 @@
 import customtkinter as ctk
+import banquinho as bq
 from tkinter import messagebox
+
 
 def inserir():
 
@@ -28,10 +30,17 @@ def inserir():
        
         def salvar_informacoes():
             messagebox.showinfo("Notificação", "Informações salvas")
+            latitude_info = latitude.get("1.0", "end-1c")
+            longitude_info = longitude.get("1.0", "end-1c")
+            especie_info = especie.get("1.0","end-1c")
+            locais_info = locais.get("1.0","end-1c")
+            cliente_info = cliente.get("1.0","end-1c")
+           
+            bq.insert_arvore(cliente_info, especie_info, locais_info, latitude_info, longitude_info)
             arvore.destroy()
 
         
-        id = criar_linha(arvore, "ID:")
+        
         latitude = criar_linha(arvore, "Latitude:")
         longitude = criar_linha(arvore, "Longitude:")
         especie = criar_linha(arvore, "Especie:")
@@ -63,9 +72,13 @@ def inserir():
 
         def salvar_informacoes():
             messagebox.showinfo("Notificação", "Informações salvas")
+            nome_info = nome.get("1.0", "end-1c")
+            descricao_info = descricao.get("1.0", "end-1c")
+            expectativa_vida_info = expectativa_vida.get("1.0", "end-1c")
+            nome_cientifico_info = nome_cientifico.get("1.0", "end-1c")
+            bq.insert_especie(nome_info,descricao_info,expectativa_vida_info,nome_cientifico_info)
             especie.destroy()
 
-        id = criar_linha(especie, "ID:")
         nome = criar_linha(especie, "Nome:")
         descricao = criar_linha(especie, "Descrição:")
         expectativa_vida = criar_linha(especie, "Expec de vida:")
@@ -96,9 +109,13 @@ def inserir():
 
         def salvar_informacoes():
             messagebox.showinfo("Notificação", "Informações salvas")
+            nome_get = nome.get("1.0","end-1c")
+            descricao_get = descricao.get("1.0","end-1c")
+
+            bq.insert_bioma(nome_get, descricao_get)
             bioma.destroy()
 
-        id = criar_linha(bioma, "ID:")
+       
         nome = criar_linha(bioma, "Nome:")
         descricao = criar_linha(bioma, "Descrição:")
 
@@ -127,10 +144,11 @@ def inserir():
 
         def salvar_informacoes():
             messagebox.showinfo("Notificação", "Informações salvas")
-            nome_info = nome.get()
+            nome_info = nome.get("1.0", "end-1c")
+            sigla_info = sigla.get("1.0", "end-1c")
+            bq.insert_uf(nome_info,sigla_info)
             uf.destroy()
-        
-        id = criar_linha(uf, "ID:")
+
         nome = criar_linha(uf, "Nome:")
         sigla = criar_linha(uf, "Sigla:")
 
@@ -159,9 +177,23 @@ def inserir():
 
         def salvar_informacoes():
             messagebox.showinfo("Notificação", "Informações salvas")
+            bairro_info = bairro.get("1.0", "end-1c")
+            cidade_info = cidade.get("1.0", "end-1c")
+            complemento_info = complemento.get("1.0","end-1c")
+            numero_info = numero.get("1.0","end-1c")
+            rua_info = rua.get("1.0","end-1c")
+            uf_info = uf.get("1.0", "end-1c")
+            bioma_info = bioma.get("1.0", "end-1c")
+            nome_info = nome.get("1.0","end-1c")
+            descricao_info = descricao.get("1.0","end-1c")
+            croqui_info = croqui.get("1.0","end-1c")
+            area_total_info = area_total.get("1.0","end-1c")
+            tipo_plantio_info = tipo_plantio.get("1.0","end-1c")
+            bq.insert_locais(bairro_info, cidade_info, complemento_info, numero_info, rua_info,uf_info, bioma_info, nome_info, descricao_info, croqui_info, area_total_info, tipo_plantio_info)
+
             local.destroy()
 
-        id = criar_linha(local, "ID:")
+        
         nome = criar_linha(local, "Nome:")
         cidade = criar_linha(local, "Cidade:")
         bairro = criar_linha(local, "Bairro:")
@@ -200,9 +232,14 @@ def inserir():
 
         def salvar_informacoes():
             messagebox.showinfo("Notificação", "Informações salvas")
+            reserva_legal_info = reserva_legal.get("1.0","end-1c")
+            APPs_info = APPs.get("1.0","end-1c")
+            uso_da_terra_info = uso_da_terra.get("1.0","end-1c")
+            local_info = local.get("1.0","end-1c")
+            bq.insert_car(reserva_legal_info, APPs_info, uso_da_terra_info, local_info)
             CAR.destroy()
 
-        id = criar_linha(CAR, "ID:")
+       
         reserva_legal = criar_linha(CAR, "Reserva Legal:")
         APPs = criar_linha(CAR, "APPs:")
         uso_da_terra = criar_linha(CAR, "Uso da Terra:")
@@ -233,9 +270,18 @@ def inserir():
 
         def salvar_informacoes():
             messagebox.showinfo("Notificação", "Informações salvas")
+            nome_info = nome.get("1.0","end-1c")
+            cpf_info = cpf.get("1.0","end-1c")
+            cidade_info = cidade.get("1.0","end-1c")
+            bairro_info = bairro.get("1.0","end-1c")
+            complemento_info = complemento.get("1.0","end-1c")
+            numero_info = numero.get("1.0","end-1c")
+            rua_info = rua.get("1.0","end-1c")
+            uf_info = uf.get("1.0","end-1c")
+            data_nascimento_info = data_nascimento.get("1.0","end-1c")
+            bq.insert_funcinario(nome_info, bairro_info, cidade_info, complemento_info, numero_info, rua_info, cpf_info, uf_info, data_nascimento_info)
             funcionario.destroy()
 
-        id = criar_linha(funcionario, "ID:")
         nome = criar_linha(funcionario, "Nome:")
         cpf = criar_linha(funcionario, "CPF:")
         cidade = criar_linha(funcionario, "Cidade:")
@@ -271,9 +317,20 @@ def inserir():
 
         def salvar_informacoes():
             messagebox.showinfo("Notificação", "Informações salvas")
+            bairro_info = bairro.get("1.0", "end-1c")
+            cidade_info = cidade.get("1.0", "end-1c")
+            complemento_info = complemento.get("1.0","end-1c")
+            numero_info = numero.get("1.0","end-1c")
+            rua_info = rua.get("1.0","end-1c")
+            uf_info = uf.get("1.0", "end-1c")
+            cpf_info = cpf.get("1.0", "end-1c")
+            nome_info = nome.get("1.0","end-1c")
+            telefone_info = telefone.get("1.0","end-1c")
+            email_info = email.get("1.0","end-1c")
+            bq.insert_cliente(nome_info, bairro_info, cidade_info, complemento_info, numero_info, rua_info, cpf_info,uf_info,telefone_info,email_info)
             cliente.destroy()
 
-        id = criar_linha(cliente, "ID:")
+        
         nome = criar_linha(cliente, "Nome:")
         cpf = criar_linha(cliente, "CPF:")
         cidade = criar_linha(cliente, "Cidade:")
@@ -323,7 +380,7 @@ def inserir():
     cliente_botao = ctk.CTkButton(scroll,text="Cliente",width=200,height=50,command = func_cliente)
     cliente_botao.pack(pady=20)
 
-    
+print("\nta aqui")
 
 root = ctk.CTk()
 root.geometry("750x550")
@@ -348,4 +405,3 @@ db_button = ctk.CTkButton(root,text="Consultar",width=200,height=50)
 db_button.pack(pady=20)
 
 root.mainloop()
-
