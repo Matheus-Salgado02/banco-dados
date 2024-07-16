@@ -1,7 +1,7 @@
 import customtkinter as ctk
 import banquinho as bq
 from tkinter import messagebox
-
+import bdtesthud as bdt
 
 def inserir():
 
@@ -345,10 +345,46 @@ def inserir():
         salvar = ctk.CTkButton(cliente, text="Salvar", command=salvar_informacoes)
         salvar.pack(pady=10)
 
+    def func_bioma_especie():
+        bioma_especie = ctk.CTkToplevel(root)
+        bioma_especie.title("Bioma/Especie")
+        bioma_especie.geometry("400x320")
+
+        def criar_linha(parent, texto_label):
+            frame = ctk.CTkFrame(parent)
+            frame.pack(pady=5, fill='x', padx=10)
+            
+            frame_inner = ctk.CTkFrame(frame)
+            frame_inner.pack(fill='x')
+
+            label = ctk.CTkLabel(frame_inner, text=texto_label, width=100)
+            label.pack(side='left', padx=5)
+
+            textbox = ctk.CTkTextbox(frame_inner, width=200, height=25)
+            textbox.pack(side='left', padx=5)
+            
+            return textbox
+
+        def salvar_informacoes():
+            messagebox.showinfo("Notificação", "Informações salvas")
+            id_bioma_info = id_bioma.get("1.0","end-1c")
+            id_especie_info = id_especie.get("1.0","end-1c")
+
+            bq.insert_bioma_especie(id_bioma_info, id_especie_info)
+            bioma_especie.destroy()
+
+       
+        id_bioma = criar_linha(bioma_especie, "Id Bioma:")
+        id_especie = criar_linha(bioma_especie, "Id Especie:")
+
+        salvar = ctk.CTkButton(bioma_especie, text="Salvar", command=salvar_informacoes)
+        salvar.pack(pady=10)
+
 
     nova = ctk.CTkToplevel(root)
     nova.title("Inserir")
     nova.geometry("400x500")
+    nova.resizable(False, False) 
 
     titulo = ctk.CTkLabel(nova,text = "Escolha uma tabela", font=ctk.CTkFont(size=30,weight = "bold"))
     titulo.pack(padx=10,pady=(40,20))
@@ -380,7 +416,115 @@ def inserir():
     cliente_botao = ctk.CTkButton(scroll,text="Cliente",width=200,height=50,command = func_cliente)
     cliente_botao.pack(pady=20)
 
-print("\nta aqui")
+    bioma_especie_botao = ctk.CTkButton(scroll,text="Cliente",width=200,height=50,command = func_bioma_especie)
+    bioma_especie_botao.pack(pady=20)
+
+def atualizar():
+
+    def abrir_alterar_arvore():
+        bdt.func_alterar("Alterar arvore","arvore",nova)
+
+
+    def alterar_uf():
+        bdt.func_alterar("Alterar UF","uf",nova)
+        
+
+    def alterar_especie():
+        bdt.func_alterar("Alterar Especie","especie",nova)
+
+    def alterar_bioma():
+        bdt.func_alterar("Alterar Bioma","bioma",nova)
+
+    def alterar_local():
+        bdt.func_alterar("Alterar Local","locais",nova)
+
+    def alterar_car():
+        bdt.func_alterar("Alterar CAR","CAR",nova)
+
+    def alterar_func():
+        bdt.func_alterar("Alterar Funcionario","funcionario",nova)
+
+    def alterar_cliente():
+        bdt.func_alterar("Alterar Cliente","cliente",nova)
+
+    def alterar_bioma_especie():
+        bdt.func_alterar("Alterar Bioma/Especie","bioma_especie",nova)
+
+
+    
+
+    nova = ctk.CTkToplevel(root)
+    nova.title("Atualizar/Excluir")
+    nova.geometry("400x500")
+    nova.resizable(False, False) 
+
+    titulo = ctk.CTkLabel(nova, text="Alterar Informações", font=ctk.CTkFont(size=30, weight="bold"))
+    titulo.pack(padx=10, pady=(40, 20))
+
+    scroll = ctk.CTkScrollableFrame(nova,width=700, height=400)
+    scroll.pack(pady=10)
+
+    arvore_botao = ctk.CTkButton(scroll,text="Arvore",width=200,height=50,command=abrir_alterar_arvore)
+    arvore_botao.pack(pady=20)
+
+    especie_botao = ctk.CTkButton(scroll,text="Especie",width=200,height=50,command = alterar_especie)
+    especie_botao.pack(pady=20)
+
+    bioma_botao = ctk.CTkButton(scroll,text="Bioma",width=200,height=50,command=alterar_bioma)
+    bioma_botao.pack(pady=20)
+
+    uf_botao = ctk.CTkButton(scroll,text="UF",width=200,height=50,command= alterar_uf)
+    uf_botao.pack(pady=20)
+
+    local_botao = ctk.CTkButton(scroll,text="Local",width=200,height=50,command=alterar_local)
+    local_botao.pack(pady=20)
+
+    CAR_botao = ctk.CTkButton(scroll,text="CAR",width=200,height=50, command = alterar_car)
+    CAR_botao.pack(pady=20)
+
+    func_botao = ctk.CTkButton(scroll,text="Funcionario",width=200,height=50,command = alterar_func)
+    func_botao.pack(pady=20)
+
+    cliente_botao = ctk.CTkButton(scroll,text="Cliente",width=200,height=50,command=alterar_cliente)
+    cliente_botao.pack(pady=20)
+
+    bioma_especie_botao = ctk.CTkButton(scroll,text="Bioma/Especuie",width=200,height=50,command=alterar_bioma_especie)
+    bioma_especie_botao.pack(pady=20)
+
+def consultar():
+    nova = ctk.CTkToplevel(root)
+    nova.title("Consultar")
+    nova.geometry("400x500")
+    nova.resizable(False, False) 
+
+    titulo = ctk.CTkLabel(nova,text = "Consultas", font=ctk.CTkFont(size=30,weight = "bold"))
+    titulo.pack(padx=10,pady=(40,20))
+
+    botao_protocolo = ctk.CTkButton(nova,text="Protocolo",width=200,height=50,command = consulta_protocolo)
+    botao_protocolo.pack(pady=20)
+
+    botao_arvore = ctk.CTkButton(nova,text="Quantidade árvores por local",width=200,height=50,command = consultar_qtd_arvore)
+    botao_arvore.pack(pady=20)
+
+
+
+def consulta_protocolo():
+    # titulo = ctk.CTkLabel(nova,text = "Visualização dos protocolos criados", font=ctk.CTkFont(size=30,weight = "bold"))
+    # titulo.pack(padx=10,pady=(40,20))
+    nova = ctk.CTkToplevel(root)
+    nova.title("View")
+    nova.geometry("1200x500")
+    nova.resizable(False, False) 
+    row,nomesrow=bq.select("protocoloview") 
+    bdt.tabela(nova,nomesrow,row)
+
+def consultar_qtd_arvore():
+    nova = ctk.CTkToplevel(root)
+    nova.title("View")
+    nova.geometry("1200x500")
+    nova.resizable(False, False) 
+    row,nomesrow=bq.select("qtdarvoreslocalview") 
+    bdt.tabela(nova,nomesrow,row)
 
 root = ctk.CTk()
 root.geometry("750x550")
@@ -395,13 +539,10 @@ title_label.pack(padx=10,pady=(40,20))
 client_button = ctk.CTkButton(root,text="Inserir",width=200,height=50, command = inserir)
 client_button.pack(pady=20)
 
-tree_button = ctk.CTkButton(root,text="Excluir",width=200,height=50)
-tree_button.pack(pady=20)
-
-db_button = ctk.CTkButton(root,text="Atualizar",width=200,height=50)
+db_button = ctk.CTkButton(root,text="Excluir",width=200,height=50, command=atualizar)
 db_button.pack(pady=20)
 
-db_button = ctk.CTkButton(root,text="Consultar",width=200,height=50)
+db_button = ctk.CTkButton(root,text="Consultar",width=200,height=50, command=consultar)
 db_button.pack(pady=20)
 
 root.mainloop()
