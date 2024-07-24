@@ -1,5 +1,6 @@
 import mysql.connector
 import mysql.connector.types
+from datetime import date
 
 
 def connectar():
@@ -91,14 +92,21 @@ def insert_arvore(id_cliente, id_especie, id_locais, cord_latitude, cord_longitu
     valores = (id_cliente, id_especie, id_locais, cord_latitude, cord_longitude)
     cursor.execute(comando, valores)
     conn.commit()
+    arvore_inserida=cursor.lastrowid
     cursor.close()
     conn.close()
+    data_criacao = date(2024,7,16)
+    print(data_criacao)
+    insert_protocolo(data_criacao, arvore_inserida)
 
-def insert_protocolo(data_criacao, data_plantar, deferido, id_arvore, id_funcionario):
+def insert_protocolo(data_criacao,id_arvore):
     conn,cursor=connectar()
-    comando = "INSERT INTO protocolo (id, data_criacao, data_plantar, deferido, id_arvore, id_funcionario) VALUES \
-    (null,%s,%s,%s,%s,%s)"
-    valores = (data_criacao, data_plantar, deferido, id_arvore, id_funcionario)
+    comando = """
+    INSERT INTO protocolo (id, data_criacao, data_plantar, deferido, id_arvore, id_funcionario)
+    VALUES (null, %s, null, 0, %s, null)
+    """
+    
+    valores = (data_criacao,id_arvore)
     cursor.execute(comando, valores)
     conn.commit()
     cursor.close()
@@ -137,6 +145,28 @@ def select(table):
     conn.close()
     return row,coluna_nome
 
+#SELECT comando
+def select_comando(comando):
+    conn,cursor=connectar()
+    cursor.execute(comando)
+    coluna_nome = cursor.column_names
+    row = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return row,coluna_nome
+
+
+
+def select_cond(table,escolher,entidade,logica,cond):
+    conn,cursor=connectar()
+    comando = f"SELECT {escolher} FROM {table} WHERE {entidade} {logica} {cond}"
+    cursor.execute(comando)
+    coluna_nome = cursor.column_names
+    row = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return row,coluna_nome
+
 #UPDATE
 def update(table,entidade,entlog,logica,cond):
     conn,cursor=connectar()
@@ -147,15 +177,8 @@ def update(table,entidade,entlog,logica,cond):
     row = cursor.fetchall()
     cursor.close()
     conn.close()
-    return row_cont,row
+    return row,row_cont
 
 
 
-# ent=input("Nome entidade: ")
-# ent2=input("Nome log: ")
-# ent3=input("Nome dada: ")
-# delete_entidade(ent,ent2,ent3)
-
-# table= input("tabelinha? ")
-# select(table)
 

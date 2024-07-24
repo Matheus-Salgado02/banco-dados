@@ -1,0 +1,36 @@
+CREATE VIEW arvoreinformacao AS SELECT arvore.id, arvore.cord_latitude, arvore.cord_longitude, arvore.id_especie, especie.nome 
+As nome_especie, arvore.id_locais, uf.sigla AS Estado, locais.nome As nome_local, locais.tipo_plantio , arvore.id_cliente, cliente.nome 
+As nome_cliente, cliente.telefone As cli_tel, cliente.email As cli_email FROM arvore
+INNER JOIN especie on arvore.id_especie = especie.id
+INNER JOIN locais on arvore.id_locais = locais.id
+INNER JOIN cliente on arvore.id_cliente = cliente.id
+INNER JOIN uf on locais.id_UF = uf.id;
+
+SELECT DISTINCT arvoreinformacao.id_cliente, arvoreinformacao.nome_cliente, cliente.cpf, cliente.cidade As Cidade_Cliente, 
+arvoreinformacao.cli_tel, arvoreinformacao.cli_email, COUNT(*) As Qtd_Arvores FROM arvoreinformacao INNER JOIN cliente on 
+cliente.id = arvoreinformacao.id_cliente GROUP BY arvoreinformacao.id_cliente ORDER BY COUNT(*) DESC;
+
+SELECT arvoreinformacao.id As Arvore_id, arvoreinformacao.cord_latitude, arvoreinformacao.cord_longitude, arvoreinformacao.id_especie, 
+arvoreinformacao.nome_especie, arvoreinformacao.id_locais, arvoreinformacao.Estado , arvoreinformacao.nome_local FROM arvoreinformacao 
+WHERE arvoreinformacao.nome_local LIKE "%Parque%";
+
+CREATE VIEW protocoloview AS SELECT protocolo.id As Prot_id,arvore.id As ID_Arvore, arvore.id_cliente As ID_Cli, cliente.nome As NomeCli, locais.id AS local_id,locais.cidade ,uf.sigla As Estado, locais.nome AS LocalArvore ,protocolo.data_criacao As DT_cria ,protocolo.data_plantar As DT_plant,funcionario.id As ID_Func, funcionario.nome As NomeFunc, protocolo.deferido As Deferido FROM protocolo 
+INNER JOIN funcionario on protocolo.id_funcionario = funcionario.id
+INNER JOIN arvore on protocolo.id_arvore = arvore.id
+INNER JOIN locais on arvore.id_locais = locais.id
+INNER JOIN cliente on arvore.id_cliente = cliente.id
+INNER JOIN uf on uf.id = locais.id_UF;
+
+SELECT protocoloview.ID_Cli AS ID_Cliente, protocoloview.ID_Arvore AS ID_Arvore, protocoloview.NomeCli AS 
+NomeCliente,protocoloview.Prot_id AS ID_Protocolo,protocoloview.cidade AS Cidade, protocoloview.Estado AS 
+Estado, protocoloview.LocalArvore AS LocalPlantado,  protocoloview.DT_plant AS Data_Plant FROM protocoloview 
+WHERE YEAR(protocoloview.DT_plant) = {data_ano} AND MONTH(protocoloview.DT_plant) = {data_mes};
+
+SELECT DISTINCT protocoloview.ID_Func, protocoloview.NomeFunc, funcionario.cpf, funcionario.cidade As Cidade_func, 
+funcionario.data_nascimento, COUNT(*) AS Qtd_arvores_plantadas FROM protocoloview 
+INNER JOIN funcionario on funcionario.id = protocoloview.ID_Func WHERE Deferido = 1 GROUP BY protocoloview.NomeFunc;
+
+
+
+
+
