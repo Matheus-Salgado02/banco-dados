@@ -35,10 +35,10 @@ def insert_bioma(nome, descricao):
     cursor.close()
     conn.close()
 
-def insert_especie(nome, descricao, espectativa_vida, nome_cientifico):
+def insert_especie(nome, descricao, expectativa_vida, nome_cientifico):
     conn,cursor=connectar()
-    comando = "INSERT INTO especie (id, nome, descricao, espectativa_vida, nome_cientifico) VALUES (null,%s,%s,%s,%s)"
-    valores = (nome, descricao, espectativa_vida, nome_cientifico)
+    comando = "INSERT INTO especie (id, nome, descricao, expectativa_vida, nome_cientifico) VALUES (null,%s,%s,%s,%s)"
+    valores = (nome, descricao, expectativa_vida, nome_cientifico)
     cursor.execute(comando, valores)
     conn.commit()
     cursor.close()

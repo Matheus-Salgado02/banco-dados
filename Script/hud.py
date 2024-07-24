@@ -412,7 +412,7 @@ def inserir():
     nova.resizable(False, False)
     icone(nova)
 
-    titulo = ctk.CTkLabel(nova,text = "Escolha uma tabela", font=ctk.CTkFont(size=30,weight = "bold"))
+    titulo = ctk.CTkLabel(nova,text = "Inserir Tabelas", font=ctk.CTkFont(size=30,weight = "bold"))
     titulo.pack(padx=10,pady=(40,20))
 
     scroll = ctk.CTkScrollableFrame(nova,width=700, height=400)
@@ -532,7 +532,7 @@ def consultar():
     nova.resizable(False, False)
     icone(nova)
 
-    titulo = ctk.CTkLabel(nova,text = "Views", font=ctk.CTkFont(size=30,weight = "bold"))
+    titulo = ctk.CTkLabel(nova,text = "Consultas", font=ctk.CTkFont(size=30,weight = "bold"))
     titulo.pack(padx=10,pady=(40,20))
 
     scroll = ctk.CTkScrollableFrame(nova,width=700, height=400)
@@ -564,7 +564,7 @@ def consultar():
 
 def func_read():
     nova = ctk.CTkToplevel(root)
-    nova.title("Read")
+    nova.title("Ver Tabelas")
     nova.geometry("400x500")
     nova.resizable(False, False)
     icone(nova)
@@ -819,7 +819,7 @@ client_button.pack(side='left', padx=5)
 db_button1 = ctk.CTkButton(button_frame, text="Excluir", width=130, height=50, command=atualizar)
 db_button1.pack(side='left', padx=5)
 
-db_button2 = ctk.CTkButton(button_frame, text="Views", width=130, height=50, command=consultar)
+db_button2 = ctk.CTkButton(button_frame, text="Consultas", width=130, height=50, command=consultar)
 db_button2.pack(side='left', padx=5)
 
 db_button3 = ctk.CTkButton(button_frame, text="Ver Tabelas", width=130, height=50, command=func_read)

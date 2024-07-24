@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04/07/2024 às 02:41
+-- Tempo de geração: 24/07/2024 às 14:23
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -50,7 +50,48 @@ INSERT INTO `arvore` (`id`, `cord_latitude`, `cord_longitude`, `id_especie`, `id
 (7, -10.9111, -46.7444, 7, 7, 7),
 (8, -2.7264, -42.7982, 8, 8, 8),
 (9, -23.3714, -44.8448, 9, 9, 9),
-(10, -2.7959, -54.6186, 10, 10, 10);
+(10, -2.7959, -54.6186, 10, 10, 10),
+(15, 120, 210, 8, 10, 3),
+(16, 111, 222, 8, 10, 5),
+(17, 222, 111, 8, 10, 5),
+(18, 2121, 1231, 8, 10, 6),
+(19, 123, 321, 8, 10, 5),
+(20, 123, 321, 8, 10, 5),
+(21, 978, 78, 8, 10, 6),
+(22, 3216, 456456, 8, 10, 7),
+(23, 436.45, 456456, 8, 10, 5),
+(24, 123, 312, 8, 10, 6),
+(25, 45, 45, 8, 10, 5),
+(26, 54, 64, 8, 10, 6),
+(27, 21, 31, 8, 10, 5),
+(28, 54, 45, 8, 10, 6),
+(29, 4, 4, 8, 10, 5),
+(30, 4, 4, 8, 10, 5),
+(31, 5, 5, 8, 10, 7),
+(32, 6, 5, 8, 10, 5),
+(33, 55, 55, 8, 10, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para view `arvoreinformacao`
+-- (Veja abaixo para a visão atual)
+--
+CREATE TABLE `arvoreinformacao` (
+`id` int(10) unsigned
+,`cord_latitude` float
+,`cord_longitude` float
+,`id_especie` int(10) unsigned
+,`nome_especie` varchar(40)
+,`id_locais` int(10) unsigned
+,`Estado` varchar(2)
+,`nome_local` varchar(45)
+,`tipo_plantio` varchar(45)
+,`id_cliente` int(10) unsigned
+,`nome_cliente` varchar(40)
+,`cli_tel` varchar(13)
+,`cli_email` varchar(256)
+);
 
 -- --------------------------------------------------------
 
@@ -121,7 +162,7 @@ CREATE TABLE `car` (
 --
 
 INSERT INTO `car` (`id`, `reserva_legal`, `apps`, `uso_terra`, `id_locais`) VALUES
-(1, 20, 10, 'Pastagem', 1),
+(1, 15, 10, 'Pastagem', 1),
 (2, 26, 15, 'Cultivo', 2),
 (3, 18, 8, 'Silvicultura', 3),
 (4, 23, 12, 'Agricultura', 4),
@@ -157,16 +198,16 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `nome`, `cpf`, `cidade`, `bairro`, `rua`, `numero`, `complemento`, `id_UF`, `telefone`, `email`) VALUES
-(1, 'João Silva', '12345678901', 'São Paulo', 'Centro', 'Rua das Flores', 123, 'Apto 101', 25, '', ''),
-(2, 'Maria Oliveira', '98765432100', 'Rio de Janeiro', 'Jardim das Acácias', 'Avenida Brasil', 456, 'Casa 2', 19, '', ''),
-(3, 'Pedro Santos', '12312312312', 'Belo Horizonte', 'Bela Vista', 'Rua Minas Gerais', 789, 'Bloco B', 13, '', ''),
-(4, 'Ana Costa', '32132132132', 'Rio de Janeiro', 'Copacabana', 'Rua Atlântica', 101, 'Cobertura', 19, '', ''),
-(5, 'Carlos Pereira', '11122233344', 'São Paulo', 'Itaim Bibi', 'Avenida Brigadeiro Faria Lima', 456, 'Sala 305', 25, '', ''),
-(6, 'Mariana Souza', '44455566677', 'São Paulo', 'Jardins', 'Rua Haddock Lobo', 789, 'Apto 202', 25, '', ''),
-(7, 'Lucas Alves', '22233344455', 'Fortaleza', 'Meireles', 'Rua Silva Paulet', 321, 'Casa', 6, '', ''),
-(8, 'Fernanda Lima', '66677788899', 'Curitiba', 'Centro', 'Rua XV de Novembro', 654, 'Apto 808', 16, '', ''),
-(9, 'Rafael Duarte', '55566677788', 'Florianópolis', 'Centro', 'Avenida Beira Mar Norte', 987, 'Cobertura', 24, '', ''),
-(10, 'Patrícia Ribeiro', '99988877766', 'Brasília', 'Asa Sul', 'Rua W3 Sul', 123, 'Bloco G', 7, '', '');
+(1, 'João Silva', '12345678901', 'São Paulo', 'Centro', 'Rua das Flores', 111, 'Apto 101', 25, '981234567', 'maria.silva@gmail.com'),
+(2, 'Maria Oliveira', '98765432100', 'Rio de Janeiro', 'Jardim das Acácias', 'Avenida Brasil', 222, 'Casa 2', 19, '992345678', 'joao.pereira@hotmail.com'),
+(3, 'Pedro Santos', '12312312312', 'Belo Horizonte', 'Bela Vista', 'Rua Minas Gerais', 333, 'Bloco B', 13, '973456789', 'ana.souza@outlook.com'),
+(4, 'Ana Costa', '32132132132', 'Rio de Janeiro', 'Copacabana', 'Rua Atlântica', 444, 'Cobertura', 19, '984567890', 'carlos.lima@gmail.com'),
+(5, 'Carlos Pereira', '11122233344', 'São Paulo', 'Itaim Bibi', 'Avenida Brigadeiro Faria Lima', 555, 'Sala 305', 25, '995678901', 'fernanda.rodrigues@hotmail.com'),
+(6, 'Mariana Souza', '44455566677', 'São Paulo', 'Jardins', 'Rua Haddock Lobo', 666, 'Apto 202', 25, '976789012', 'paulo.almeida@outlook.com'),
+(7, 'Lucas Alves', '22233344455', 'Fortaleza', 'Meireles', 'Rua Silva Paulet', 777, 'Casa', 6, '987890123', 'juliana.martins@gmail.com'),
+(8, 'Fernanda Lima', '66677788899', 'Curitiba', 'Centro', 'Rua XV de Novembro', 888, 'Apto 808', 16, '998901234', 'roberto.gomes@hotmail.com'),
+(9, 'Rafael Duarte', '55566677788', 'Florianópolis', 'Centro', 'Avenida Beira Mar Norte', 999, 'Cobertura', 24, '969012345', 'patricia.oliveira@outlook.com'),
+(10, 'Patrícia Ribeiro', '99988877766', 'Brasília', 'Asa Sul', 'Rua W3 Sul', 101010, 'Bloco G', 7, '979123456', 'ricardo.ferreira@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -280,10 +321,10 @@ INSERT INTO `locais` (`id`, `cidade`, `bairro`, `rua`, `numero`, `complemento`, 
 CREATE TABLE `protocolo` (
   `id` int(10) UNSIGNED NOT NULL,
   `data_criacao` date NOT NULL,
-  `data_plantar` date NOT NULL,
-  `deferido` bit(1) DEFAULT NULL,
+  `data_plantar` date DEFAULT NULL,
+  `deferido` varchar(1) NOT NULL,
   `id_arvore` int(10) UNSIGNED NOT NULL,
-  `id_funcionario` int(10) UNSIGNED NOT NULL
+  `id_funcionario` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -291,16 +332,42 @@ CREATE TABLE `protocolo` (
 --
 
 INSERT INTO `protocolo` (`id`, `data_criacao`, `data_plantar`, `deferido`, `id_arvore`, `id_funcionario`) VALUES
-(1, '2024-06-25', '2024-07-10', b'1', 1, 1),
-(2, '2024-06-25', '2024-07-12', b'1', 2, 2),
-(3, '2024-06-25', '2024-07-15', b'0', 3, 3),
-(4, '2024-06-25', '2024-07-20', b'1', 4, 2),
-(5, '2024-06-25', '2024-07-25', b'0', 5, 2),
-(6, '2024-06-25', '2024-08-01', b'1', 6, 6),
-(7, '2024-06-25', '2024-08-05', b'1', 7, 7),
-(8, '2024-06-25', '2024-08-10', b'0', 8, 5),
-(9, '2024-06-25', '2024-08-15', b'1', 9, 9),
-(10, '2024-06-25', '2024-08-20', b'0', 10, 10);
+(1, '0000-00-00', '0000-00-00', '0', 1, 1),
+(2, '2024-06-25', '2024-07-12', '1', 2, 2),
+(3, '2024-06-25', '0000-00-00', '0', 3, 3),
+(4, '0000-00-00', '0000-00-00', '0', 4, 2),
+(5, '2024-06-25', '2024-07-25', '1', 5, 2),
+(6, '2024-06-25', '2024-08-01', '1', 6, 6),
+(7, '2024-06-25', '2024-08-05', '1', 7, 7),
+(8, '2024-06-25', '2024-08-10', '1', 8, 5),
+(9, '2024-06-25', '2024-08-15', '1', 9, 9),
+(10, '2024-06-25', '2024-09-22', '1', 10, 7),
+(20, '2024-07-16', '0000-00-00', '0', 27, 1),
+(21, '2024-07-16', '2024-07-16', '1', 28, 1),
+(23, '2024-07-16', '0000-00-00', '0', 31, 3),
+(24, '2024-07-16', '0000-00-00', '0', 33, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para view `protocoloview`
+-- (Veja abaixo para a visão atual)
+--
+CREATE TABLE `protocoloview` (
+`Prot_id` int(10) unsigned
+,`ID_Arvore` int(10) unsigned
+,`ID_Cli` int(10) unsigned
+,`NomeCli` varchar(40)
+,`local_id` int(10) unsigned
+,`cidade` varchar(40)
+,`Estado` varchar(2)
+,`LocalArvore` varchar(45)
+,`DT_cria` date
+,`DT_plant` date
+,`ID_Func` int(10) unsigned
+,`NomeFunc` varchar(40)
+,`Deferido` varchar(1)
+);
 
 -- --------------------------------------------------------
 
@@ -346,6 +413,24 @@ INSERT INTO `uf` (`id`, `nome`, `sigla`) VALUES
 (25, 'São Paulo', 'SP'),
 (26, 'Sergipe', 'SE'),
 (27, 'Tocantins', 'TO');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para view `arvoreinformacao`
+--
+DROP TABLE IF EXISTS `arvoreinformacao`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `arvoreinformacao`  AS SELECT `arvore`.`id` AS `id`, `arvore`.`cord_latitude` AS `cord_latitude`, `arvore`.`cord_longitude` AS `cord_longitude`, `arvore`.`id_especie` AS `id_especie`, `especie`.`nome` AS `nome_especie`, `arvore`.`id_locais` AS `id_locais`, `uf`.`sigla` AS `Estado`, `locais`.`nome` AS `nome_local`, `locais`.`tipo_plantio` AS `tipo_plantio`, `arvore`.`id_cliente` AS `id_cliente`, `cliente`.`nome` AS `nome_cliente`, `cliente`.`telefone` AS `cli_tel`, `cliente`.`email` AS `cli_email` FROM ((((`arvore` join `especie` on(`arvore`.`id_especie` = `especie`.`id`)) join `locais` on(`arvore`.`id_locais` = `locais`.`id`)) join `cliente` on(`arvore`.`id_cliente` = `cliente`.`id`)) join `uf` on(`locais`.`id_UF` = `uf`.`id`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para view `protocoloview`
+--
+DROP TABLE IF EXISTS `protocoloview`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `protocoloview`  AS SELECT `protocolo`.`id` AS `Prot_id`, `arvore`.`id` AS `ID_Arvore`, `arvore`.`id_cliente` AS `ID_Cli`, `cliente`.`nome` AS `NomeCli`, `locais`.`id` AS `local_id`, `locais`.`cidade` AS `cidade`, `uf`.`sigla` AS `Estado`, `locais`.`nome` AS `LocalArvore`, `protocolo`.`data_criacao` AS `DT_cria`, `protocolo`.`data_plantar` AS `DT_plant`, `funcionario`.`id` AS `ID_Func`, `funcionario`.`nome` AS `NomeFunc`, `protocolo`.`deferido` AS `Deferido` FROM (((((`protocolo` join `funcionario` on(`protocolo`.`id_funcionario` = `funcionario`.`id`)) join `arvore` on(`protocolo`.`id_arvore` = `arvore`.`id`)) join `locais` on(`arvore`.`id_locais` = `locais`.`id`)) join `cliente` on(`arvore`.`id_cliente` = `cliente`.`id`)) join `uf` on(`uf`.`id` = `locais`.`id_UF`)) ;
 
 --
 -- Índices para tabelas despejadas
@@ -432,7 +517,7 @@ ALTER TABLE `uf`
 -- AUTO_INCREMENT de tabela `arvore`
 --
 ALTER TABLE `arvore`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de tabela `bioma`
@@ -474,7 +559,7 @@ ALTER TABLE `locais`
 -- AUTO_INCREMENT de tabela `protocolo`
 --
 ALTER TABLE `protocolo`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de tabela `uf`

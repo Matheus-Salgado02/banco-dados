@@ -1,0 +1,7 @@
+ALTER TABLE table_name MODIFY COLUMN column_name datatype;
+
+ALTER TABLE locais ADD COLUMN nome varchar(45) NOT NULL;
+
+ALTER TABLE especie CHANGE COLUMN espectativa_vida expectativa_vida INT;
+
+RENAME TABLE funcinario to funcionario;
